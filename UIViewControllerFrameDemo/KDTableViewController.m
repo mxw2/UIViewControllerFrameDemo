@@ -16,6 +16,15 @@
 
 @implementation KDTableViewController
 
+/* 情景一：
+ 不处理任何translucent属性
+ self.navigationController.navigationBar.translucent
+ self.tabBarController.tabBar.translucent
+ 直接设置self.edgesForExtendedLayout = UIRectEdgeNone;
+ 在viewDidLayoutSubviews设置tableView.frame也会得到正确的效果
+ 即上下bar都是透明的，self.view处于二者之间，tableView在layout的方法整可以正确拿到self.view.bounds
+ **/
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     // 只会影响TwoViewController对应的导航栏是不透明的，其他导航栏依旧正常显示，self.view会处于导航栏之下，tabbar之上

@@ -49,6 +49,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // 即使设置了全屏，但是上下bar都是不透明的，还是在两个bar之间而已
     self.edgesForExtendedLayout = UIRectEdgeAll;
 }
 
