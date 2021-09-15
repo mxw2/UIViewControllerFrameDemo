@@ -8,11 +8,11 @@
 #import "AppDelegate.h"
 #import "KDNavigationController.h"
 #import "KDTabBarController.h"
-#import "KDViewController.h"
-
-#define random(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)/255.0]
-
-#define randomColor random(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
+#import "KDTwoViewController.h"
+#import "KDThreeViewController.h"
+#import "KDFourViewController.h"
+#import "KDTableViewController.h"
+#import "UIViewControllerFrameDemoDefine.h"
 
 @interface AppDelegate ()
 
@@ -20,6 +20,7 @@
 
 @implementation AppDelegate
 
+// 参考文章链接：https://blog.csdn.net/Bolted_snail/article/details/99673358
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
@@ -34,7 +35,16 @@
 }
 
 - (UIViewController *)setupControllerWithIndex:(NSInteger)index {
-    KDViewController *viewController = [[KDViewController alloc] init];
+    KDBaseViewController *viewController = nil;
+    if (index == 0) {
+        viewController = [[KDTableViewController alloc] init];
+    } else if (index == 1){
+        viewController = [[KDTwoViewController alloc] init];
+    } else if (index == 2){
+        viewController = [[KDThreeViewController alloc] init];
+    } else if (index == 3){
+        viewController = [[KDFourViewController alloc] init];
+    }
     viewController.view.backgroundColor = randomColor;
     KDNavigationController *navigationController = [[KDNavigationController alloc] initWithRootViewController:viewController];
     navigationController.tabBarItem.title = @(index).stringValue;

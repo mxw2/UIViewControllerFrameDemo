@@ -15,7 +15,11 @@
 		6ACA7BE126F1C667000F2ABE /* UIViewControllerFrameDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ACA7BE026F1C667000F2ABE /* UIViewControllerFrameDemoUITests.m */; };
 		6ACA7BF026F1C6F3000F2ABE /* KDTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ACA7BEF26F1C6F3000F2ABE /* KDTabBarController.m */; };
 		6ACA7BF326F1C70C000F2ABE /* KDNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ACA7BF226F1C70C000F2ABE /* KDNavigationController.m */; };
-		6ACA7BF626F1CA01000F2ABE /* KDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ACA7BF526F1CA01000F2ABE /* KDViewController.m */; };
+		6ACA7BF626F1CA01000F2ABE /* KDBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ACA7BF526F1CA01000F2ABE /* KDBaseViewController.m */; };
+		6ACA7BF926F1CF58000F2ABE /* KDTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ACA7BF826F1CF58000F2ABE /* KDTableViewController.m */; };
+		6ACA7BFD26F1DBF3000F2ABE /* KDTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ACA7BFC26F1DBF3000F2ABE /* KDTwoViewController.m */; };
+		6ACA7C0026F1DC16000F2ABE /* KDThreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ACA7BFF26F1DC16000F2ABE /* KDThreeViewController.m */; };
+		6ACA7C0326F1DC20000F2ABE /* KDFourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ACA7C0226F1DC20000F2ABE /* KDFourViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,8 +57,17 @@
 		6ACA7BEF26F1C6F3000F2ABE /* KDTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KDTabBarController.m; sourceTree = "<group>"; };
 		6ACA7BF126F1C70C000F2ABE /* KDNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KDNavigationController.h; sourceTree = "<group>"; };
 		6ACA7BF226F1C70C000F2ABE /* KDNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KDNavigationController.m; sourceTree = "<group>"; };
-		6ACA7BF426F1CA01000F2ABE /* KDViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KDViewController.h; sourceTree = "<group>"; };
-		6ACA7BF526F1CA01000F2ABE /* KDViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KDViewController.m; sourceTree = "<group>"; };
+		6ACA7BF426F1CA01000F2ABE /* KDBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KDBaseViewController.h; sourceTree = "<group>"; };
+		6ACA7BF526F1CA01000F2ABE /* KDBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KDBaseViewController.m; sourceTree = "<group>"; };
+		6ACA7BF726F1CF58000F2ABE /* KDTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KDTableViewController.h; sourceTree = "<group>"; };
+		6ACA7BF826F1CF58000F2ABE /* KDTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KDTableViewController.m; sourceTree = "<group>"; };
+		6ACA7BFA26F1D237000F2ABE /* UIViewControllerFrameDemoDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIViewControllerFrameDemoDefine.h; sourceTree = "<group>"; };
+		6ACA7BFB26F1DBF3000F2ABE /* KDTwoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KDTwoViewController.h; sourceTree = "<group>"; };
+		6ACA7BFC26F1DBF3000F2ABE /* KDTwoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KDTwoViewController.m; sourceTree = "<group>"; };
+		6ACA7BFE26F1DC16000F2ABE /* KDThreeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KDThreeViewController.h; sourceTree = "<group>"; };
+		6ACA7BFF26F1DC16000F2ABE /* KDThreeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KDThreeViewController.m; sourceTree = "<group>"; };
+		6ACA7C0126F1DC20000F2ABE /* KDFourViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KDFourViewController.h; sourceTree = "<group>"; };
+		6ACA7C0226F1DC20000F2ABE /* KDFourViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KDFourViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,12 +120,21 @@
 			children = (
 				6ACA7BB926F1C664000F2ABE /* AppDelegate.h */,
 				6ACA7BBA26F1C664000F2ABE /* AppDelegate.m */,
-				6ACA7BF426F1CA01000F2ABE /* KDViewController.h */,
-				6ACA7BF526F1CA01000F2ABE /* KDViewController.m */,
+				6ACA7BF426F1CA01000F2ABE /* KDBaseViewController.h */,
+				6ACA7BF526F1CA01000F2ABE /* KDBaseViewController.m */,
+				6ACA7BF726F1CF58000F2ABE /* KDTableViewController.h */,
+				6ACA7BF826F1CF58000F2ABE /* KDTableViewController.m */,
+				6ACA7BFB26F1DBF3000F2ABE /* KDTwoViewController.h */,
+				6ACA7BFC26F1DBF3000F2ABE /* KDTwoViewController.m */,
+				6ACA7BFE26F1DC16000F2ABE /* KDThreeViewController.h */,
+				6ACA7BFF26F1DC16000F2ABE /* KDThreeViewController.m */,
+				6ACA7C0126F1DC20000F2ABE /* KDFourViewController.h */,
+				6ACA7C0226F1DC20000F2ABE /* KDFourViewController.m */,
 				6ACA7BEE26F1C6F3000F2ABE /* KDTabBarController.h */,
 				6ACA7BEF26F1C6F3000F2ABE /* KDTabBarController.m */,
 				6ACA7BF126F1C70C000F2ABE /* KDNavigationController.h */,
 				6ACA7BF226F1C70C000F2ABE /* KDNavigationController.m */,
+				6ACA7BFA26F1D237000F2ABE /* UIViewControllerFrameDemoDefine.h */,
 				6ACA7BC526F1C666000F2ABE /* Assets.xcassets */,
 				6ACA7BC726F1C666000F2ABE /* LaunchScreen.storyboard */,
 				6ACA7BCA26F1C666000F2ABE /* Info.plist */,
@@ -267,11 +289,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6ACA7C0026F1DC16000F2ABE /* KDThreeViewController.m in Sources */,
 				6ACA7BBB26F1C664000F2ABE /* AppDelegate.m in Sources */,
 				6ACA7BF326F1C70C000F2ABE /* KDNavigationController.m in Sources */,
+				6ACA7BF926F1CF58000F2ABE /* KDTableViewController.m in Sources */,
+				6ACA7C0326F1DC20000F2ABE /* KDFourViewController.m in Sources */,
+				6ACA7BFD26F1DBF3000F2ABE /* KDTwoViewController.m in Sources */,
 				6ACA7BCC26F1C666000F2ABE /* main.m in Sources */,
 				6ACA7BF026F1C6F3000F2ABE /* KDTabBarController.m in Sources */,
-				6ACA7BF626F1CA01000F2ABE /* KDViewController.m in Sources */,
+				6ACA7BF626F1CA01000F2ABE /* KDBaseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

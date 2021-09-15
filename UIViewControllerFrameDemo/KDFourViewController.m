@@ -1,17 +1,17 @@
 //
-//  KDViewController.m
+//  KDFourViewController.m
 //  UIViewControllerFrameDemo
 //
 //  Created by marsxinwang on 2021/9/15.
 //
 
-#import "KDViewController.h"
+#import "KDFourViewController.h"
 
-@interface KDViewController ()
+@interface KDFourViewController ()
 
 @end
 
-@implementation KDViewController
+@implementation KDFourViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
