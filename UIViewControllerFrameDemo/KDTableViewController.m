@@ -7,6 +7,7 @@
 
 #import "KDTableViewController.h"
 #import "UIViewControllerFrameDemoDefine.h"
+#import "KDNoNavigationBarViewController.h"
 
 @interface KDTableViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -57,6 +58,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = [NSString stringWithFormat:@"%@", self];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds
                                                           style:UITableViewStylePlain];
@@ -64,6 +66,8 @@
     tableView.backgroundColor = UIColor.cyanColor;
     tableView.delegate = self;
     tableView.dataSource = self;
+    // 没起作用，只要布局放到viewDidLayoutSubviews就没有问题
+    // automaticallyAdjustsScrollIndicatorInsets 感觉可以不要
     tableView.automaticallyAdjustsScrollIndicatorInsets = UIApplicationBackgroundFetchIntervalNever;
     self.tableView = tableView;
 }
@@ -89,6 +93,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 44;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    KDNoNavigationBarViewController *tempController = [[KDNoNavigationBarViewController alloc] init];
+    [self.navigationController pushViewController:tempController animated:YES];
 }
 
 @end
