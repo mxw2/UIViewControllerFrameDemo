@@ -1,9 +1,3 @@
-//
-//  Config-VCFrame.debug.xcconfig
-//  VCFrame
-//
-//  Created by marsxinwang on 2022/5/24.
-//
-
-// Configuration settings file format documentation can be found at:
-// https://help.apple.com/xcode/#/dev745c5c974
+HOST_URL = 127.0.0.1_debug
+//OTHER_LDFLAGS = -framework "AFNetworking"
+//HEADER_SEARCH_PATHS = /use/info/inclue
