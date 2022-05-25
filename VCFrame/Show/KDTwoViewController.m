@@ -6,6 +6,9 @@
 //
 
 #import "KDTwoViewController.h"
+#import "OPOrderChangeableBase.h"
+#import "OPOrderBase.h"
+#import "SIPerson.h"
 
 @interface KDTwoViewController ()
 
@@ -51,12 +54,39 @@
     [super viewDidLoad];
     // 即使设置了全屏，但是上下bar都是不透明的，还是在两个bar之间而已
     self.edgesForExtendedLayout = UIRectEdgeAll;
+    // order test
+//    OPOrderBase *order = [OPOrderBase modelWithDictionary:[self testData] error:nil];
+//    NSLog(@"order = \n %@",order);
+    
+    // 单利测试
+    [self sharedTest];
 }
 
 // 对subview布局，就应该在这类方法中才可以拿到正确的self.view.frame
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     // NSLog(@"KDTwoViewController.frame viewDidLayoutSubviews = %@", [NSValue valueWithCGRect:self.view.frame]);
+}
+
+- (NSDictionary *)testData
+{
+    return @{
+             @"orderChangeableBaseOne":@"orderChangeableBaseOne",
+             @"orderChangeableBaseTwo":@"orderChangeableBaseTwo",
+             @"orderBaseOne":@"orderBaseOne",
+             @"orderBaseTwo":@"orderBaseTwo"
+             };
+}
+
+- (void)sharedTest {
+    SIPerson *person = [SIPerson sharedDefault];
+    NSLog(@"%@",person);
+    
+    SIPerson *person1 = [[SIPerson alloc] init];
+    NSLog(@"%@",person1);
+
+    SIPerson *person2 = [person1 copy];
+    NSLog(@"%@",person2);
 }
 
 @end

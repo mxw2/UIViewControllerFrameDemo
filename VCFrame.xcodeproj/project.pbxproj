@@ -21,6 +21,16 @@
 		6ACA7BFD26F1DBF3000F2ABE /* KDTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ACA7BFC26F1DBF3000F2ABE /* KDTwoViewController.m */; };
 		6ACA7C0026F1DC16000F2ABE /* KDThreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ACA7BFF26F1DC16000F2ABE /* KDThreeViewController.m */; };
 		6ACA7C0326F1DC20000F2ABE /* KDFourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ACA7C0226F1DC20000F2ABE /* KDFourViewController.m */; };
+		6AE1AA9A283DAE3900CED6CE /* OPOrderChangeableBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AE1AA92283DAE3900CED6CE /* OPOrderChangeableBase.m */; };
+		6AE1AA9B283DAE3900CED6CE /* OPOrderBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AE1AA94283DAE3900CED6CE /* OPOrderBase.m */; };
+		6AE1AA9C283DAE3900CED6CE /* OPSceneAdaptorCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AE1AA98283DAE3900CED6CE /* OPSceneAdaptorCore.m */; };
+		6AE1AAA1283DAEBB00CED6CE /* SIPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AE1AA9E283DAEBB00CED6CE /* SIPerson.m */; };
+		6AE1AAA6283DAF2000CED6CE /* WXStatusBarHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AE1AAA3283DAF2000CED6CE /* WXStatusBarHUD.m */; };
+		6AE1AAA7283DAF2000CED6CE /* WXStatusBarHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6AE1AAA5283DAF2000CED6CE /* WXStatusBarHUD.bundle */; };
+		6AE1AAAD283DAF2B00CED6CE /* WaterFlowView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6AE1AAA9283DAF2B00CED6CE /* WaterFlowView.bundle */; };
+		6AE1AAAE283DAF2B00CED6CE /* WaterFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE1AAAA283DAF2B00CED6CE /* WaterFlowView.swift */; };
+		6AE1AAAF283DAF2B00CED6CE /* WaterFlowModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE1AAAB283DAF2B00CED6CE /* WaterFlowModel.swift */; };
+		6AE1AAB0283DAF2B00CED6CE /* WaterFlowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE1AAAC283DAF2B00CED6CE /* WaterFlowCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +77,26 @@
 		6ACA7BFF26F1DC16000F2ABE /* KDThreeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KDThreeViewController.m; sourceTree = "<group>"; };
 		6ACA7C0126F1DC20000F2ABE /* KDFourViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KDFourViewController.h; sourceTree = "<group>"; };
 		6ACA7C0226F1DC20000F2ABE /* KDFourViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KDFourViewController.m; sourceTree = "<group>"; };
+		6AE1AA8F283DAE3900CED6CE /* SecondChangeableProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondChangeableProtocol.h; sourceTree = "<group>"; };
+		6AE1AA90283DAE3900CED6CE /* OPChangeableBaseProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPChangeableBaseProtocol.h; sourceTree = "<group>"; };
+		6AE1AA91283DAE3900CED6CE /* OPOrderBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPOrderBase.h; sourceTree = "<group>"; };
+		6AE1AA92283DAE3900CED6CE /* OPOrderChangeableBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPOrderChangeableBase.m; sourceTree = "<group>"; };
+		6AE1AA93283DAE3900CED6CE /* FirstChangeableProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstChangeableProtocol.h; sourceTree = "<group>"; };
+		6AE1AA94283DAE3900CED6CE /* OPOrderBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPOrderBase.m; sourceTree = "<group>"; };
+		6AE1AA95283DAE3900CED6CE /* OPOrderChangeableBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPOrderChangeableBase.h; sourceTree = "<group>"; };
+		6AE1AA97283DAE3900CED6CE /* OPSceneAdapting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPSceneAdapting.h; sourceTree = "<group>"; };
+		6AE1AA98283DAE3900CED6CE /* OPSceneAdaptorCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPSceneAdaptorCore.m; sourceTree = "<group>"; };
+		6AE1AA99283DAE3900CED6CE /* OPSceneAdaptorCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPSceneAdaptorCore.h; sourceTree = "<group>"; };
+		6AE1AA9E283DAEBB00CED6CE /* SIPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIPerson.m; sourceTree = "<group>"; };
+		6AE1AA9F283DAEBB00CED6CE /* SIPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIPerson.h; sourceTree = "<group>"; };
+		6AE1AAA0283DAEBB00CED6CE /* SISingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SISingleton.h; sourceTree = "<group>"; };
+		6AE1AAA3283DAF2000CED6CE /* WXStatusBarHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXStatusBarHUD.m; sourceTree = "<group>"; };
+		6AE1AAA4283DAF2000CED6CE /* WXStatusBarHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXStatusBarHUD.h; sourceTree = "<group>"; };
+		6AE1AAA5283DAF2000CED6CE /* WXStatusBarHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WXStatusBarHUD.bundle; sourceTree = "<group>"; };
+		6AE1AAA9283DAF2B00CED6CE /* WaterFlowView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WaterFlowView.bundle; sourceTree = "<group>"; };
+		6AE1AAAA283DAF2B00CED6CE /* WaterFlowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterFlowView.swift; sourceTree = "<group>"; };
+		6AE1AAAB283DAF2B00CED6CE /* WaterFlowModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterFlowModel.swift; sourceTree = "<group>"; };
+		6AE1AAAC283DAF2B00CED6CE /* WaterFlowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterFlowCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +176,10 @@
 		6ACA7BB826F1C664000F2ABE /* VCFrame */ = {
 			isa = PBXGroup;
 			children = (
+				6AE1AAA8283DAF2B00CED6CE /* WXWaterFlowView */,
+				6AE1AAA2283DAF2000CED6CE /* StatusBarHUD */,
+				6AE1AA9D283DAEAD00CED6CE /* WXSharedInstance */,
+				6AE1AA8D283DAE2800CED6CE /* OrderPlatform */,
 				6A43938F283D2F13005519FB /* Show */,
 				6A0D8A67283D191600EF3E46 /* Config */,
 				6ACA7BFA26F1D237000F2ABE /* VCFrameDefine.h */,
@@ -164,6 +198,70 @@
 				6ACA7BD726F1C667000F2ABE /* Info.plist */,
 			);
 			path = VCFrameTests;
+			sourceTree = "<group>";
+		};
+		6AE1AA8D283DAE2800CED6CE /* OrderPlatform */ = {
+			isa = PBXGroup;
+			children = (
+				6AE1AA8E283DAE3900CED6CE /* OPOrder */,
+				6AE1AA96283DAE3900CED6CE /* SceneAdaptor */,
+			);
+			path = OrderPlatform;
+			sourceTree = "<group>";
+		};
+		6AE1AA8E283DAE3900CED6CE /* OPOrder */ = {
+			isa = PBXGroup;
+			children = (
+				6AE1AA8F283DAE3900CED6CE /* SecondChangeableProtocol.h */,
+				6AE1AA90283DAE3900CED6CE /* OPChangeableBaseProtocol.h */,
+				6AE1AA91283DAE3900CED6CE /* OPOrderBase.h */,
+				6AE1AA92283DAE3900CED6CE /* OPOrderChangeableBase.m */,
+				6AE1AA93283DAE3900CED6CE /* FirstChangeableProtocol.h */,
+				6AE1AA94283DAE3900CED6CE /* OPOrderBase.m */,
+				6AE1AA95283DAE3900CED6CE /* OPOrderChangeableBase.h */,
+			);
+			path = OPOrder;
+			sourceTree = "<group>";
+		};
+		6AE1AA96283DAE3900CED6CE /* SceneAdaptor */ = {
+			isa = PBXGroup;
+			children = (
+				6AE1AA97283DAE3900CED6CE /* OPSceneAdapting.h */,
+				6AE1AA98283DAE3900CED6CE /* OPSceneAdaptorCore.m */,
+				6AE1AA99283DAE3900CED6CE /* OPSceneAdaptorCore.h */,
+			);
+			path = SceneAdaptor;
+			sourceTree = "<group>";
+		};
+		6AE1AA9D283DAEAD00CED6CE /* WXSharedInstance */ = {
+			isa = PBXGroup;
+			children = (
+				6AE1AA9F283DAEBB00CED6CE /* SIPerson.h */,
+				6AE1AA9E283DAEBB00CED6CE /* SIPerson.m */,
+				6AE1AAA0283DAEBB00CED6CE /* SISingleton.h */,
+			);
+			path = WXSharedInstance;
+			sourceTree = "<group>";
+		};
+		6AE1AAA2283DAF2000CED6CE /* StatusBarHUD */ = {
+			isa = PBXGroup;
+			children = (
+				6AE1AAA3283DAF2000CED6CE /* WXStatusBarHUD.m */,
+				6AE1AAA4283DAF2000CED6CE /* WXStatusBarHUD.h */,
+				6AE1AAA5283DAF2000CED6CE /* WXStatusBarHUD.bundle */,
+			);
+			path = StatusBarHUD;
+			sourceTree = "<group>";
+		};
+		6AE1AAA8283DAF2B00CED6CE /* WXWaterFlowView */ = {
+			isa = PBXGroup;
+			children = (
+				6AE1AAA9283DAF2B00CED6CE /* WaterFlowView.bundle */,
+				6AE1AAAA283DAF2B00CED6CE /* WaterFlowView.swift */,
+				6AE1AAAB283DAF2B00CED6CE /* WaterFlowModel.swift */,
+				6AE1AAAC283DAF2B00CED6CE /* WaterFlowCell.swift */,
+			);
+			path = WXWaterFlowView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,6 +345,8 @@
 			files = (
 				6ACA7BC926F1C666000F2ABE /* LaunchScreen.storyboard in Resources */,
 				6ACA7BC626F1C666000F2ABE /* Assets.xcassets in Resources */,
+				6AE1AAAD283DAF2B00CED6CE /* WaterFlowView.bundle in Resources */,
+				6AE1AAA7283DAF2000CED6CE /* WXStatusBarHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,12 +365,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				6ACA7C0026F1DC16000F2ABE /* KDThreeViewController.m in Sources */,
+				6AE1AAAF283DAF2B00CED6CE /* WaterFlowModel.swift in Sources */,
 				6ACA7BBB26F1C664000F2ABE /* AppDelegate.m in Sources */,
+				6AE1AAA1283DAEBB00CED6CE /* SIPerson.m in Sources */,
+				6AE1AA9B283DAE3900CED6CE /* OPOrderBase.m in Sources */,
+				6AE1AAAE283DAF2B00CED6CE /* WaterFlowView.swift in Sources */,
+				6AE1AAA6283DAF2000CED6CE /* WXStatusBarHUD.m in Sources */,
 				6ACA7BF326F1C70C000F2ABE /* KDNavigationController.m in Sources */,
 				6ACA7BF926F1CF58000F2ABE /* KDTableViewController.m in Sources */,
 				6ACA7C0326F1DC20000F2ABE /* KDFourViewController.m in Sources */,
 				6ACA7BFD26F1DBF3000F2ABE /* KDTwoViewController.m in Sources */,
+				6AE1AA9A283DAE3900CED6CE /* OPOrderChangeableBase.m in Sources */,
+				6AE1AA9C283DAE3900CED6CE /* OPSceneAdaptorCore.m in Sources */,
 				6ACA7BCC26F1C666000F2ABE /* main.m in Sources */,
+				6AE1AAB0283DAF2B00CED6CE /* WaterFlowCell.swift in Sources */,
 				6ACA7BF026F1C6F3000F2ABE /* KDTabBarController.m in Sources */,
 				6AAEC19F26F2F6A4004B4368 /* KDNoNavigationBarViewController.m in Sources */,
 				6ACA7BF626F1CA01000F2ABE /* KDBaseViewController.m in Sources */,
@@ -383,6 +491,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.kuaibao.reading.VCFrame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Dev;
@@ -390,6 +499,7 @@
 		6AA035E7283BD96B00A9998E /* Dev */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = VCFrameTests/Info.plist;
@@ -481,6 +591,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.kuaibao.reading.VCFrame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Beta;
@@ -488,6 +599,7 @@
 		6AA035EB283BDD1200A9998E /* Beta */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = VCFrameTests/Info.plist;
@@ -632,6 +744,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.kuaibao.reading.VCFrame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -652,6 +765,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.kuaibao.reading.VCFrame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -659,6 +773,7 @@
 		6ACA7BE926F1C667000F2ABE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = VCFrameTests/Info.plist;
@@ -678,6 +793,7 @@
 		6ACA7BEA26F1C667000F2ABE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = VCFrameTests/Info.plist;
