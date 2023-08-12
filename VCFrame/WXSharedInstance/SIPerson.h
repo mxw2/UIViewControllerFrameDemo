@@ -11,5 +11,5 @@
 @interface SIPerson : NSObject
 @property(copy,nonatomic) NSString *name;
 @property(copy,nonatomic) NSString *num;
-SISingletonH(Default)
+//SISingletonH(Default)
 @end

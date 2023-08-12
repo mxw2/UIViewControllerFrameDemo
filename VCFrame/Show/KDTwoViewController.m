@@ -79,14 +79,14 @@
 }
 
 - (void)sharedTest {
-    SIPerson *person = [SIPerson sharedDefault];
-    NSLog(@"%@",person);
-    
-    SIPerson *person1 = [[SIPerson alloc] init];
-    NSLog(@"%@",person1);
-
-    SIPerson *person2 = [person1 copy];
-    NSLog(@"%@",person2);
+//    SIPerson *person = [SIPerson sharedDefault];
+//    NSLog(@"%@",person);
+//    
+//    SIPerson *person1 = [[SIPerson alloc] init];
+//    NSLog(@"%@",person1);
+//
+//    SIPerson *person2 = [person1 copy];
+//    NSLog(@"%@",person2);
 }
 
 @end

@@ -13,6 +13,7 @@
 #import "KDFourViewController.h"
 #import "KDTableViewController.h"
 #import "VCFrameDefine.h"
+#import "KDDemoViewController.h"
 
 @interface AppDelegate ()
 
@@ -24,14 +25,24 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    // [self setupTabbarController]; // 4个tabs demo
+    [self setupOriginalController];
+    [self.window makeKeyAndVisible];
+    return YES;
+}
+
+- (void)setupOriginalController {
+    KDDemoViewController *controller = [[KDDemoViewController alloc] init];
+    self.window.rootViewController = controller;
+}
+
+- (void)setupTabbarController {
     KDTabBarController *tabbarController = [[KDTabBarController alloc] init];
     for (NSInteger i = 0; i < 4; i++) {
         UIViewController *controller = [self setupControllerWithIndex:i];
         [tabbarController addChildViewController:controller];
     }
     self.window.rootViewController = tabbarController;
-    [self.window makeKeyAndVisible];
-    return YES;
 }
 
 - (UIViewController *)setupControllerWithIndex:(NSInteger)index {

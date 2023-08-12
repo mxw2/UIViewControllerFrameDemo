@@ -10,6 +10,17 @@
 
 @implementation SIPerson
 
-SISingletonM(Default)
+//SISingletonM(Default)
+
+- (instancetype)init {
+    if (self = [super init]) {
+        NSLog(@"SIPerson init");
+    }
+    return self;
+}
+
+- (void)dealloc {
+    NSLog(@"SIPerson dealloc");
+}
 
 @end
