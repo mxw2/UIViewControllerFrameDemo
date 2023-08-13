@@ -33,7 +33,8 @@
 
 - (void)setupOriginalController {
     KDDemoViewController *controller = [[KDDemoViewController alloc] init];
-    self.window.rootViewController = controller;
+    KDNavigationController *navigationController = [[KDNavigationController alloc] initWithRootViewController:controller];
+    self.window.rootViewController = navigationController;
 }
 
 - (void)setupTabbarController {
