@@ -630,6 +630,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = VCFrame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_GENERATE_MAP_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -730,6 +731,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = VCFrame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_GENERATE_MAP_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -883,6 +885,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = VCFrame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_GENERATE_MAP_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -904,6 +907,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = VCFrame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_GENERATE_MAP_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
