@@ -9,10 +9,11 @@
 #import "SIPerson.h"
 #import <WebKit/WebKit.h>
 #import "KDCustomURLSchemeHandler.h"
+#import <JavaScriptCore/JavaScriptCore.h>
 
 @interface KDDemoViewController ()
 
-@property (nonatomic, strong) NSTimer *timer;
+//@property (nonatomic, strong) NSTimer *timer;
 
 @end
 
@@ -21,7 +22,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.redColor;
-    [self setupWebViewButton];
+    [self jsTest];
+    
+}
+
+- (void)jsTest {
+    JSContext *context = [[JSContext alloc] init];
+    JSValue *value = [context evaluateScript:@"2 + 3"];
+    NSLog(@"2 + 3 = %@", value);
 }
 
 - (void)setupWebViewButton {
