@@ -22,8 +22,53 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.redColor;
-    [self jsTest];
-    
+    [self gcdTestSync];
+    // KVO打印的问题
+}
+
+- (void)gcdTestAynac {
+    // 打印结果
+    // 1 5 2（子线程） 4（子线程） 3（子线程）
+    NSLog(@"1");
+    dispatch_queue_t queue = dispatch_queue_create("com.test.gcd", DISPATCH_QUEUE_SERIAL);
+    dispatch_async(queue, ^{
+        NSLog(@"2-线程:%@", NSThread.currentThread); // 这里是子线程哈，切记
+        // 这里没有开启runloop，所以无法打印哈
+        [self performSelector:@selector(log6)
+                   withObject:nil
+                   afterDelay:0];
+        // 这里是是异步，所以没有问题哈，同步就挂了
+        dispatch_async(queue, ^{
+            NSLog(@"3-线程:%@", NSThread.currentThread);
+        });
+        NSLog(@"4-线程:%@", NSThread.currentThread);
+    });
+    NSLog(@"5");
+}
+
+- (void)gcdTestSync {
+    // 打印结果
+    // 1 5 2（子线程） 挂掉
+    NSLog(@"1");
+    dispatch_queue_t queue = dispatch_queue_create("com.test.gcd", DISPATCH_QUEUE_SERIAL);
+    dispatch_async(queue, ^{
+        NSLog(@"2-线程:%@", NSThread.currentThread); // 这里是子线程哈，切记
+        // 这里没有开启runloop，所以无法打印哈
+        [self performSelector:@selector(log6)
+                   withObject:nil
+                   afterDelay:0];
+        // 这里是是异步，所以没有问题哈，同步就挂了(死锁)
+        dispatch_sync(queue, ^{
+            NSLog(@"3-线程:%@", NSThread.currentThread);
+        });
+        NSLog(@"4-线程:%@", NSThread.currentThread);
+    });
+    NSLog(@"5");
+}
+
+// 给gcd用的，不要删除哈
+- (void)log6 {
+    NSLog(@"6");
 }
 
 - (void)jsTest {
