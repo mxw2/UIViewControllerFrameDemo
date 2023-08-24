@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0311E1D22A979F39006FC867 /* WDButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0311E1D12A979F39006FC867 /* WDButton.m */; };
 		03474BBD2A924B6F006588DD /* MyPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 03474BBC2A924B6F006588DD /* MyPoint.m */; };
 		6A09F2D32A865A510067EB30 /* KDDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A09F2D22A865A510067EB30 /* KDDemoViewController.m */; };
 		6A1AA1F42A87B88C003D73A6 /* KDCustomURLSchemeHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1AA1F32A87B88C003D73A6 /* KDCustomURLSchemeHandler.m */; };
@@ -65,6 +66,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0311E1D02A979F39006FC867 /* WDButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WDButton.h; sourceTree = "<group>"; };
+		0311E1D12A979F39006FC867 /* WDButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WDButton.m; sourceTree = "<group>"; };
 		03474BBB2A924B6F006588DD /* MyPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyPoint.h; sourceTree = "<group>"; };
 		03474BBC2A924B6F006588DD /* MyPoint.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyPoint.m; sourceTree = "<group>"; };
 		6A09F2D12A865A510067EB30 /* KDDemoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KDDemoViewController.h; sourceTree = "<group>"; };
@@ -268,6 +271,8 @@
 				6A1AA22C2A87BDEF003D73A6 /* WKWebView+Custome.m */,
 				6A09F2D12A865A510067EB30 /* KDDemoViewController.h */,
 				6A09F2D22A865A510067EB30 /* KDDemoViewController.m */,
+				0311E1D02A979F39006FC867 /* WDButton.h */,
+				0311E1D12A979F39006FC867 /* WDButton.m */,
 				6A1AA1F22A87B88C003D73A6 /* KDCustomURLSchemeHandler.h */,
 				6A1AA1F32A87B88C003D73A6 /* KDCustomURLSchemeHandler.m */,
 				6ACA7BF426F1CA01000F2ABE /* KDBaseViewController.h */,
@@ -507,6 +512,7 @@
 			files = (
 				6A1AA21E2A87BC21003D73A6 /* UIRefreshControl+AFNetworking.m in Sources */,
 				6A1AA22E2A87BDEF003D73A6 /* WKWebView+Custome.m in Sources */,
+				0311E1D22A979F39006FC867 /* WDButton.m in Sources */,
 				6ACA7C0026F1DC16000F2ABE /* KDThreeViewController.m in Sources */,
 				6AE1AAAF283DAF2B00CED6CE /* WaterFlowModel.swift in Sources */,
 				6A1AA21D2A87BC21003D73A6 /* UIProgressView+AFNetworking.m in Sources */,

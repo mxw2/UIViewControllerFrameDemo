@@ -10,6 +10,7 @@
 #import <WebKit/WebKit.h>
 #import "KDCustomURLSchemeHandler.h"
 #import <JavaScriptCore/JavaScriptCore.h>
+#import "WDButton.h"
 
 @interface KDDemoViewController ()
 
@@ -24,9 +25,43 @@
     self.view.backgroundColor = UIColor.redColor;
 //    [self gcdTestSync];
     // KVO打印的问题
-    int result = [self getNums:8 m:8];
-    NSLog(@"---result = %d", result);
+//    int result = [self getNums:8 m:8];
+//    NSLog(@"---result = %d", result);
+    [self addB];
+    
 }
+
+// 测试1：只有touchStart三件套情况，就打印他们
+// 测试2：touch三件套，外加addTarget:action: touch起作用
+// 测试3：touch & button.addTarget:action & b.addTapGeust，结果会打印touch & tap事件
+- (void)addB {
+    WDButton *b = [[WDButton alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+//    [b addTarget:self action:@selector(didB) forControlEvents:UIControlEventTouchUpInside];
+    b.backgroundColor = UIColor.yellowColor;
+    [self.view addSubview:b];
+    
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
+//    [tap addTarget:self action:@selector(clickTapEvent)];
+//    [b addGestureRecognizer:tap];
+}
+
+- (void)clickTapEvent {
+    NSLog(@"clickTapEvent");
+}
+
+- (void)didB {
+    NSLog(@"didClickB");
+}
+
+// 不行哈
+- (void)mockAMethodWithObejct:(NSString *)object {
+    NSLog(@"mockAMethodWithObejct:NSString");
+}
+
+//- (void)mockAMethodWithObejct:(NSObject *)object {
+//    NSLog(@"mockAMethodWithObejct:NSObject");
+//}
+
 // 动态规划，递归函数
 - (int)getNums:(int)n m:(int)m {
     // 递归函数结束条件
