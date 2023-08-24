@@ -22,8 +22,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.redColor;
-    [self gcdTestSync];
+//    [self gcdTestSync];
     // KVO打印的问题
+    int result = [self getNums:8 m:8];
+    NSLog(@"---result = %d", result);
+}
+// 动态规划，递归函数
+- (int)getNums:(int)n m:(int)m {
+    // 递归函数结束条件
+    if( n ==0 || m == 0){
+        return 1;
+    } else {
+        return [self getNums:(n - 1) m:m] + [self getNums:n m:(m -1)];
+    }
 }
 
 - (void)gcdTestAynac {
