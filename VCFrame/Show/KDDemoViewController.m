@@ -15,6 +15,8 @@
 @interface KDDemoViewController ()
 
 //@property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, strong) dispatch_queue_t queue;
+@property (nonatomic, copy) NSString *name;
 
 @end
 
@@ -27,8 +29,31 @@
     // KVO打印的问题
 //    int result = [self getNums:8 m:8];
 //    NSLog(@"---result = %d", result);
+    [self taggedPointerDemo];
+    
     [self addB];
     
+}
+
+- (void)taggedPointerDemo {
+    self.queue = dispatch_queue_create("com.lj.com", DISPATCH_QUEUE_CONCURRENT);
+    for (int i = 0; i < 10000; i++) {
+        dispatch_async(self.queue, ^{
+            self.name = [NSString stringWithFormat:@"ld"];
+            NSLog(@"name = %@", self.name);
+        });
+    }
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    for (int i = 0; i < 10000; i++) {
+        dispatch_async(self.queue, ^{
+            // lg_念念不忘，就在堆区，字符串太复杂了，所以就在堆；
+            // abc很简单，优化后是NSTaggedPointerString类型，是常量区
+            self.name = [NSString stringWithFormat:@"abc"];
+            NSLog(@"name = %@", self.name);
+        });
+    }
 }
 
 // 测试1：只有touchStart三件套情况，就打印他们
