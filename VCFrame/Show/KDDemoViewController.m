@@ -29,10 +29,89 @@
     // KVO打印的问题
 //    int result = [self getNums:8 m:8];
 //    NSLog(@"---result = %d", result);
-    [self taggedPointerDemo];
+//    [self taggedPointerDemo];
     
-    [self addB];
+//    [self addB];
     
+    [self testHunHeSerices];
+    
+}
+
+- (void)testConcurrent {
+    // 打印结果
+//     1
+//     100
+//     2-线程:<NSThread: 0x6000035880c0>{number = 4, name = (null)}
+//     4-线程:<NSThread: 0x6000035c5640>{number = 5, name = (null)}
+//     3-线程:<NSThread: 0x6000035946c0>{number = 7, name = (null)}
+//     5-线程:<NSThread: 0x6000035c5180>{number = 3, name = (null)}
+    
+    // 因为是异步执行，所以内部具体是多少，也是随机的哈
+    NSLog(@"1");
+    dispatch_queue_t queue = dispatch_queue_create("com.test.gcd", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_async(queue, ^{
+        NSLog(@"2-线程:%@", NSThread.currentThread); // 这里是子线程哈，切记
+        // 这里没有开启runloop，所以无法打印哈
+        [self performSelector:@selector(log6)
+                   withObject:nil
+                   afterDelay:0];
+        // 这里是是异步，所以没有问题哈，同步就挂了
+    });
+    
+    dispatch_async(queue, ^{
+        NSLog(@"3-线程:%@", NSThread.currentThread); // 这里是子线程哈，切记
+    });
+    
+    dispatch_async(queue, ^{
+        NSLog(@"4-线程:%@", NSThread.currentThread); // 这里是【主】线程哈，切记
+    });
+    
+    dispatch_async(queue, ^{
+        NSLog(@"5-线程:%@", NSThread.currentThread); // 这里是子线程哈，切记
+    });
+    
+    NSLog(@"100");
+}
+
+// 【过去没有接触过这样的哈，注意！！！】
+- (void)testHunHeSerices {
+//     1
+//     4-线程:<_NSMainThread: 0x6000036c4240>{number = 1, name = main}
+//     2-线程:<NSThread: 0x6000036c2a00>{number = 3, name = (null)}
+//     3-线程:<NSThread: 0x600003684c80>{number = 5, name = (null)}
+//     100
+//     5-线程:<NSThread: 0x60000368ea40>{number = 6, name = (null)}
+    
+    // 打印了，非常随机，除了1是稳定的，其他的都是随机的，同步打印4是主线程
+        NSLog(@"1");
+        dispatch_queue_t queue = dispatch_queue_create("com.test.gcd", DISPATCH_QUEUE_CONCURRENT);
+        dispatch_async(queue, ^{
+            NSLog(@"2-线程:%@", NSThread.currentThread); // 这里是子线程哈，切记
+            // 这里没有开启runloop，所以无法打印哈
+            [self performSelector:@selector(log6)
+                       withObject:nil
+                       afterDelay:0];
+            // 这里是是异步，所以没有问题哈，同步就挂了
+        });
+        
+        dispatch_async(queue, ^{
+            NSLog(@"3-线程:%@", NSThread.currentThread); // 这里是子线程哈，切记
+        });
+        // 4永远在100之前哈
+        dispatch_sync(queue, ^{
+            // 临时添加等待几秒后，会先执行1 100 2 5 3 4（最后）
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                    NSLog(@"4-线程:%@", NSThread.currentThread); // 这里是【主】线程哈，切记
+//            });
+            
+            NSLog(@"4-线程:%@", NSThread.currentThread); // 这里是【主】线程哈，切记
+        });
+        
+        dispatch_async(queue, ^{
+            NSLog(@"5-线程:%@", NSThread.currentThread); // 这里是子线程哈，切记
+        });
+        
+        NSLog(@"100");
 }
 
 - (void)taggedPointerDemo {
