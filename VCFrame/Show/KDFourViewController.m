@@ -70,6 +70,8 @@ void printClassInfo(id obj)
         }
     };
     NSLog(@"targetView = %@", targetView);
+    
+    self.view.backgroundColor = UIColor.cyanColor;
 }
 
 - (void)function5 {

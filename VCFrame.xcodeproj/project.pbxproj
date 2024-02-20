@@ -53,6 +53,8 @@
 		6AE1AAAE283DAF2B00CED6CE /* WaterFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE1AAAA283DAF2B00CED6CE /* WaterFlowView.swift */; };
 		6AE1AAAF283DAF2B00CED6CE /* WaterFlowModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE1AAAB283DAF2B00CED6CE /* WaterFlowModel.swift */; };
 		6AE1AAB0283DAF2B00CED6CE /* WaterFlowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE1AAAC283DAF2B00CED6CE /* WaterFlowCell.swift */; };
+		A381EBFD2B6A300D0062DCE0 /* UIWindow+BBACurrentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A381EBFC2B6A300D0062DCE0 /* UIWindow+BBACurrentVC.m */; };
+		A381EC002B6A302A0062DCE0 /* UIViewController+BBACurrentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A381EBFF2B6A302A0062DCE0 /* UIViewController+BBACurrentVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,6 +166,10 @@
 		6AE1AAAA283DAF2B00CED6CE /* WaterFlowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterFlowView.swift; sourceTree = "<group>"; };
 		6AE1AAAB283DAF2B00CED6CE /* WaterFlowModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterFlowModel.swift; sourceTree = "<group>"; };
 		6AE1AAAC283DAF2B00CED6CE /* WaterFlowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterFlowCell.swift; sourceTree = "<group>"; };
+		A381EBFB2B6A300D0062DCE0 /* UIWindow+BBACurrentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+BBACurrentVC.h"; sourceTree = "<group>"; };
+		A381EBFC2B6A300D0062DCE0 /* UIWindow+BBACurrentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+BBACurrentVC.m"; sourceTree = "<group>"; };
+		A381EBFE2B6A302A0062DCE0 /* UIViewController+BBACurrentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BBACurrentVC.h"; sourceTree = "<group>"; };
+		A381EBFF2B6A302A0062DCE0 /* UIViewController+BBACurrentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BBACurrentVC.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,6 +271,10 @@
 		6A43938F283D2F13005519FB /* Show */ = {
 			isa = PBXGroup;
 			children = (
+				A381EBFE2B6A302A0062DCE0 /* UIViewController+BBACurrentVC.h */,
+				A381EBFF2B6A302A0062DCE0 /* UIViewController+BBACurrentVC.m */,
+				A381EBFB2B6A300D0062DCE0 /* UIWindow+BBACurrentVC.h */,
+				A381EBFC2B6A300D0062DCE0 /* UIWindow+BBACurrentVC.m */,
 				6ACA7BB926F1C664000F2ABE /* AppDelegate.h */,
 				6ACA7BBA26F1C664000F2ABE /* AppDelegate.m */,
 				6A1AA22D2A87BDEF003D73A6 /* WKWebView+Custome.h */,
@@ -512,6 +522,7 @@
 			files = (
 				6A1AA21E2A87BC21003D73A6 /* UIRefreshControl+AFNetworking.m in Sources */,
 				6A1AA22E2A87BDEF003D73A6 /* WKWebView+Custome.m in Sources */,
+				A381EC002B6A302A0062DCE0 /* UIViewController+BBACurrentVC.m in Sources */,
 				0311E1D22A979F39006FC867 /* WDButton.m in Sources */,
 				6ACA7C0026F1DC16000F2ABE /* KDThreeViewController.m in Sources */,
 				6AE1AAAF283DAF2B00CED6CE /* WaterFlowModel.swift in Sources */,
@@ -522,6 +533,7 @@
 				6AE1AA9B283DAE3900CED6CE /* OPOrderBase.m in Sources */,
 				6A1AA1F42A87B88C003D73A6 /* KDCustomURLSchemeHandler.m in Sources */,
 				6AE1AAAE283DAF2B00CED6CE /* WaterFlowView.swift in Sources */,
+				A381EBFD2B6A300D0062DCE0 /* UIWindow+BBACurrentVC.m in Sources */,
 				6AE1AAA6283DAF2000CED6CE /* WXStatusBarHUD.m in Sources */,
 				6A1AA2202A87BC21003D73A6 /* UIImageView+AFNetworking.m in Sources */,
 				6ACA7BF326F1C70C000F2ABE /* KDNavigationController.m in Sources */,
@@ -648,6 +660,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2GEH7687M9;
 				INFOPLIST_FILE = VCFrame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_GENERATE_MAP_FILE = YES;
@@ -749,6 +762,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2GEH7687M9;
 				INFOPLIST_FILE = VCFrame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_GENERATE_MAP_FILE = YES;
@@ -903,6 +917,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2GEH7687M9;
 				INFOPLIST_FILE = VCFrame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_GENERATE_MAP_FILE = YES;
@@ -925,6 +940,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2GEH7687M9;
 				INFOPLIST_FILE = VCFrame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_GENERATE_MAP_FILE = YES;

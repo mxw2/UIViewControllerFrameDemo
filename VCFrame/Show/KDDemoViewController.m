@@ -11,12 +11,17 @@
 #import "KDCustomURLSchemeHandler.h"
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "WDButton.h"
+#import "KDThreeViewController.h"
+#import "KDNavigationController.h"
+#import "UIWindow+BBACurrentVC.h"
+// KDNoNavigationBarViewController
 
 @interface KDDemoViewController ()
 
 //@property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) dispatch_queue_t queue;
 @property (nonatomic, copy) NSString *name;
+@property (nonatomic, strong) UIButton *blueButton;
 
 @end
 
@@ -24,7 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = UIColor.redColor;
+    self.view.backgroundColor = UIColor.cyanColor;
 //    [self gcdTestSync];
     // KVO打印的问题
 //    int result = [self getNums:8 m:8];
@@ -33,8 +38,31 @@
     
 //    [self addB];
     
-    [self testHunHeSerices];
+    // [self testHunHeSerices];
     
+    // 测试出现整个AI打电话效果
+    [self setupButton];
+}
+
+- (void)setupButton {
+    // 创建一个按钮
+    self.blueButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.blueButton.backgroundColor = [UIColor blueColor];
+    self.blueButton.frame = CGRectMake(100, 100, 100, 50); // 设置按钮的位置和大小
+
+    // 添加点击事件
+    [self.blueButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+
+    // 将按钮添加到视图上
+    [self.view addSubview:self.blueButton];
+}
+
+- (void)buttonClicked:(UIButton *)sender {
+    UIViewController *fromVC = [UIWindow bba_topViewController];
+    KDThreeViewController *threeController = [[KDThreeViewController alloc] init];
+    KDNavigationController *navigationController = [[KDNavigationController alloc] initWithRootViewController:threeController];
+    navigationController.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    [fromVC presentViewController:navigationController animated:NO completion:nil];
 }
 
 - (void)testConcurrent {
@@ -125,14 +153,14 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    for (int i = 0; i < 10000; i++) {
-        dispatch_async(self.queue, ^{
-            // lg_念念不忘，就在堆区，字符串太复杂了，所以就在堆；
-            // abc很简单，优化后是NSTaggedPointerString类型，是常量区
-            self.name = [NSString stringWithFormat:@"abc"];
-            NSLog(@"name = %@", self.name);
-        });
-    }
+//    for (int i = 0; i < 10000; i++) {
+//        dispatch_async(self.queue, ^{
+//            // lg_念念不忘，就在堆区，字符串太复杂了，所以就在堆；
+//            // abc很简单，优化后是NSTaggedPointerString类型，是常量区
+//            self.name = [NSString stringWithFormat:@"abc"];
+//            NSLog(@"name = %@", self.name);
+//        });
+//    }
 }
 
 // 测试1：只有touchStart三件套情况，就打印他们
@@ -280,7 +308,7 @@
 
 - (void)personDealloc {
     // 内部有打印逻辑
-    SIPerson * p = [[SIPerson alloc] init];
+//    SIPerson * p = [[SIPerson alloc] init];
 }
 
 - (void)runloop {

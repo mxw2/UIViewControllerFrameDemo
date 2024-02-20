@@ -14,6 +14,7 @@
 #import "KDTableViewController.h"
 #import "VCFrameDefine.h"
 #import "KDDemoViewController.h"
+#import "KDNoNavigationBarViewController.h"
 
 @interface AppDelegate ()
 
@@ -33,6 +34,7 @@
 
 - (void)setupOriginalController {
     KDDemoViewController *controller = [[KDDemoViewController alloc] init];
+    controller.title = @"有导航栏";
     KDNavigationController *navigationController = [[KDNavigationController alloc] initWithRootViewController:controller];
     self.window.rootViewController = navigationController;
 }
