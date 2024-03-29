@@ -10,6 +10,10 @@
 
 @implementation SIPerson
 
++ (SIPerson *)person {
+    return [[SIPerson alloc] init];
+}
+
 //SISingletonM(Default)
 
 - (instancetype)init {

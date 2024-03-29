@@ -152,6 +152,27 @@
     }
 }
 
+// 给定一个window对象，找到这个window上所有class类型为TargetView的 view实例
+- (NSArray *)findAllTargetViewClass:(UIView *)view {
+    if (!view) {
+        return nil;
+    }
+    
+    NSMutableArray<UIView *> *targetViews = [NSMutableArray array];
+    for (UIView *subview in [view subviews]) {
+        if ([subview isKindOfClass:[WDButton class]]) {
+            [targetViews addObject:subview];
+        }
+        
+        NSArray *tempArray = [self findAllTargetViewClass:subview];
+        if (tempArray.count > 0) {
+            [targetViews addObjectsFromArray:tempArray];
+        }
+    }
+
+    return targetViews;
+}
+
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
 //    for (int i = 0; i < 10000; i++) {
 //        dispatch_async(self.queue, ^{

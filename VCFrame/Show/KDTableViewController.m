@@ -8,6 +8,7 @@
 #import "KDTableViewController.h"
 #import "VCFrameDefine.h"
 #import "KDNoNavigationBarViewController.h"
+#import "KDDemoViewController.h"
 
 @interface KDTableViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -70,7 +71,10 @@
     // automaticallyAdjustsScrollIndicatorInsets 感觉可以不要
     tableView.automaticallyAdjustsScrollIndicatorInsets = UIApplicationBackgroundFetchIntervalNever;
     self.tableView = tableView;
+
 }
+
+
 
 // 对subview布局，就应该在这类方法中才可以拿到正确的self.view.frame
 // 由于self可能配置了edgesForExtendedLayout、translucent、automaticallyAdjustsScrollIndicatorInsets等属性
@@ -78,6 +82,11 @@
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     self.tableView.frame = self.view.bounds;
+    NSLog(@"看看");
+    NSArray<UIView *> *subviews = UIApplication.sharedApplication.windows.firstObject.subviews;
+    for (UIView *view in subviews) {
+        NSLog(@"mihayou: %@", view);
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -96,8 +105,13 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    KDNoNavigationBarViewController *tempController = [[KDNoNavigationBarViewController alloc] init];
-    [self.navigationController pushViewController:tempController animated:YES];
+//    KDNoNavigationBarViewController *tempController = [[KDNoNavigationBarViewController alloc] init];
+//    [self.navigationController pushViewController:tempController animated:YES];
+    
+    KDDemoViewController *controller = [[KDDemoViewController alloc] init];
+//    KDNavigationController *navigationController = [[KDNavigationController alloc] initWithRootViewController:controller];
+    [self.navigationController pushViewController:controller animated:YES];
+    
 }
 
 @end
