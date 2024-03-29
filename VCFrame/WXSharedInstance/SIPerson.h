@@ -12,4 +12,6 @@
 @property(copy,nonatomic) NSString *name;
 @property(copy,nonatomic) NSString *num;
 //SISingletonH(Default)
+
+//+ (SIPerson *)person;
 @end

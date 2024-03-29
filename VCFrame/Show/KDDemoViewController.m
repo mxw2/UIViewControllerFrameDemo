@@ -11,30 +11,365 @@
 #import "KDCustomURLSchemeHandler.h"
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "WDButton.h"
+#import "WXCusterBlockObject.h"
 
 @interface KDDemoViewController ()
 
-//@property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, strong) SIPerson *person;
 @property (nonatomic, strong) dispatch_queue_t queue;
 @property (nonatomic, copy) NSString *name;
+@property (nonatomic, strong) NSMutableDictionary *params;
 
 @end
+
+extern void _objc_autoreleasePoolPrint(void);
 
 @implementation KDDemoViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.redColor;
-//    [self gcdTestSync];
-    // KVO打印的问题
-//    int result = [self getNums:8 m:8];
-//    NSLog(@"---result = %d", result);
-//    [self taggedPointerDemo];
     
-//    [self addB];
+}
+
+- (void)mock {
+    dispatch_queue_t queue = dispatch_queue_create("com.test.gcd.serial",
+                                                   DISPATCH_QUEUE_SERIAL);
+    NSLog(@"cur theard before = %@", NSThread.currentThread);
+    __block __weak SIPerson *weakPerson = nil;
+    dispatch_async(queue, ^{
+        NSLog(@"cur theard = %@", NSThread.currentThread);
+        SIPerson *p = [[SIPerson alloc] init];
+        weakPerson = p;
+        _objc_autoreleasePoolPrint();
+    });
+    NSLog(@"weakPerson = %@", weakPerson);
+    NSThread *t = [[NSThread alloc] initWithTarget:self
+                                          selector:@selector(useThread)
+                                            object:nil];
+    [t start];
+    [[WXCusterBlockObject new] run];
+}
+
+- (void)hightligthText {
+    NSMutableString *str = [NSMutableString stringWithString:@"这是我的ppt\1234的🚗大纲👌😋😪，使用了ppt大"];
+    [str replaceOccurrencesOfString:@"\1234" withString:@"----" options:NSLiteralSearch range:NSMakeRange(0, [str length])];
+    NSLog(@"str = %@", str);
+}
+
+// 给定一个window对象，找到这个window上所有class类型为TargetView的 view实例
+- (NSArray *)findAllTargetViewClass:(UIView *)view {
+    if (!view) {
+        return nil;
+    }
     
-    [self testHunHeSerices];
+    NSMutableArray<UIView *> *targetViews = [NSMutableArray array];
+    for (UIView *subview in [view subviews]) {
+        if ([subview isKindOfClass:[WDButton class]]) {
+            [targetViews addObject:subview];
+        }
+        
+        NSArray *tempArray = [self findAllTargetViewClass:subview];
+        if (tempArray.count > 0) {
+            [targetViews addObjectsFromArray:tempArray];
+        }
+    }
+
+    return targetViews;
+}
+
+- (void)useThread {
+    NSLog(@"cur theard = %@", NSThread.currentThread);
+    __weak SIPerson *weakPerson = nil;
+    {
+        SIPerson *p = [[SIPerson alloc] init];
+        weakPerson = p;
+        NSLog(@"p = %@, weak.p = %@", p, weakPerson);
+    }
+    NSLog(@"weakPerson = %@", weakPerson);
+}
+
+- (void)test10 {
+    dispatch_queue_t queue = dispatch_queue_create("com.test.gcd.serial", DISPATCH_QUEUE_SERIAL);
+        dispatch_async(queue, ^{
+            NSLog(@"logCCCC");
+            // 这里也会死锁哈
+            dispatch_sync(queue, ^{
+                NSLog(@"logAAAA");
+            });
+        });
+}
+
+- (void)manyNotification {
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(recieveN)
+                                               name:@"asd"
+                                             object:nil];
     
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(recieveN)
+                                               name:@"asd"
+                                             object:nil];
+    
+    [self manyTimeKVO];
+    
+    
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 100, 40, 40)];
+    button.backgroundColor = UIColor.greenColor;
+    [self.view addSubview:button];
+    button.opaque = YES;
+    [button addTarget:self
+               action:@selector(changeName)
+     forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)recieveN {
+    NSLog(@"444");
+}
+
+- (void)dealloc {
+    NSLog(@"demo view controller dealloc");
+}
+
+- (void)manyTimeKVO {
+    SIPerson *p = [[SIPerson alloc] init];
+    p.name = @"1";
+    // 1.KVO可以添加多次，并且调用多次
+    // 2.只add，不remove，会怎么样
+    // chatgpt: 在iOS中使用KVO（Key-Value Observing）时，如果你没有手动移除观察者，
+    // 通常不会导致野指针或内存泄漏问题。
+    // KVO机制会在观察对象被销毁时自动将观察者移除，
+    // 因此在大多数情况下，你不需要担心这个问题。
+    // 3.remove多次会crash哈
+    [p addObserver:self
+                  forKeyPath:@"name"
+                     options:NSKeyValueObservingOptionNew
+                     context:nil];
+    [p addObserver:self
+                  forKeyPath:@"name"
+                     options:NSKeyValueObservingOptionNew
+                     context:nil];
+    self.person = p;
+}
+
+- (void)changeName {
+//    self.person.name = @"2";
+    [NSNotificationCenter.defaultCenter postNotificationName:@"asd" object:nil];
+//    [self.person removeObserver:self forKeyPath:@"name"];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary<NSKeyValueChangeKey,id> *)change
+                       context:(void *)context {
+    NSLog(@"obj = %@", change[NSKeyValueChangeNewKey]);
+}
+
+- (void)test6 {
+    
+//    [self test5];
+    
+    // 打印是1哈
+//    __weak id m = nil;
+    @autoreleasepool {
+//        id obj = [SIPerson person]; // 没有加入自动释放池中哈
+//        m = obj;
+//        NSLog(@"retain  count = %ld\n",CFGetRetainCount((__bridge  CFTypeRef)obj));
+        // 出去自动释放池的范围就释放掉了哈，立刻
+//        NSLog(@"m in = %@", m);
+//        id obj2 = [NSMutableSet set]; // 加入到自动释放中，内部做了autoreleasepool
+    }
+    // 这里m已经值为空，说明对象已经在自动释放池作用域结束的时候
+    // 已经释放了哈，但是没有放到自动释放池中，因为没有放到自动释放池的操作
+//    NSLog(@"m out = %@", m);
+    // 调用下面的就crash
+    // NSLog(@"m retain  count = %ld\n",CFGetRetainCount((__bridge  CFTypeRef)m));
+}
+
+// 测试：并发队列中，异步任务中在添加一个同步任务试试哈
+// 一切正常哈
+- (void)test5 {
+//    开始
+//    结束
+//    1-线程:<NSThread: 0x6000027a9e80>{number = 7, name = (null)}
+//    2-线程:<NSThread: 0x6000027a9e80>{number = 7, name = (null)}
+    NSLog(@"开始");
+    dispatch_queue_t queue = dispatch_queue_create("com.test.gcd", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_async(queue, ^{
+        NSLog(@"1-线程:%@", NSThread.currentThread);
+        // 这里是同步操作，放到并发队列中，没事哈
+        dispatch_sync(queue, ^{
+            NSLog(@"2-线程:%@", NSThread.currentThread);
+        });
+    });
+    dispatch_async(queue, ^{
+        NSLog(@"3-线程:%@", NSThread.currentThread);
+    });
+    NSLog(@"结束");
+}
+
+- (void)test4 {
+//    [37435:1419522] 开始
+//    [37435:1419522] 结束 // 这里我还是挺意外的，哈哈哈
+//    [37435:1419714] 2-线程:<NSThread: 0x600003da5b40>{number = 6, name = (null)}
+//    [37435:1419718] 1-线程:<NSThread: 0x600003de1340>{number = 5, name = (null)}
+//    [37435:1419719] 3-线程:<NSThread: 0x600003de1380>{number = 3, name = (null)}
+//    [这里做了栅栏函数哈] 4-线程:<NSThread: 0x600003de1340>{number = 5, name = (null)}
+//    [37435:1419718] 5-线程:<NSThread: 0x600003de1340>{number = 5, name = (null)}
+    NSLog(@"开始");
+    dispatch_queue_t queue = dispatch_queue_create("com.test.gcd", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_async(queue, ^{
+        NSLog(@"1-线程:%@", NSThread.currentThread);
+    });
+    dispatch_async(queue, ^{
+        NSLog(@"2-线程:%@", NSThread.currentThread);
+    });
+    dispatch_sync(queue, ^{
+        NSLog(@"3-线程:%@", NSThread.currentThread);
+    });
+    dispatch_barrier_async(queue, ^{
+        NSLog(@"4-dispatch_barrier_async-线程:%@", NSThread.currentThread);
+    });
+    dispatch_async(queue, ^{
+        NSLog(@"5-线程:%@", NSThread.currentThread);
+    });
+    // 因为这里没有子线程的sync方法，所以会立刻打印”结束“，在去打印block内部的
+    NSLog(@"结束");
+}
+
+- (void)test3 {
+    
+    NSLog(@"开始");
+    dispatch_queue_t queue = dispatch_queue_create("com.test.gcd", DISPATCH_QUEUE_SERIAL);
+    dispatch_async(queue, ^{
+        [self sleep5:@"a"];
+       NSLog(@"1-线程:%@", NSThread.currentThread);
+    });
+    dispatch_async(queue, ^{
+        [self sleep5:@"b"];
+       NSLog(@"2-线程:%@", NSThread.currentThread);
+    });
+    
+    [self sleep5:@"c"];
+}
+
+- (void)sleep5:(NSString *)str {
+    sleep(2);
+    NSLog(@"xxx from %@", str);
+}
+
+- (void)oneAyncAndOneSaync {
+    NSLog(@"开始");
+    dispatch_queue_t queue = dispatch_queue_create("com.test.gcd", DISPATCH_QUEUE_SERIAL);
+    dispatch_async(queue, ^{
+        [self sleep5:@"a"];
+       NSLog(@"1-线程:%@", NSThread.currentThread);
+    });
+    dispatch_sync(queue, ^{
+        [self sleep5:@"b"];
+       NSLog(@"2-线程:%@", NSThread.currentThread);
+    });
+    [self sleep5:@"c"];
+
+}
+
+- (void)null {
+    __weak NSMutableArray *temp = nil;
+    @autoreleasepool {
+        NSMutableArray *array = [[NSMutableArray alloc] init];
+        [array addObject:@"1"];
+        temp = array;
+    }
+    NSLog(@"block.array = %@", temp); // null
+}
+
+- (void)dayin {
+    NSMutableArray *array = [NSMutableArray arrayWithObjects:@"1", @"2", nil];
+    __weak NSMutableArray *temp = array;
+    // 这里是强引用，retainCount+1，
+    // 即使array在外界设置为nil，会减一，但是此时还是1，所以不会释放
+    // 可以参考self的引用哈
+//    void(^block)(void) = ^{
+//        [array addObject:@"3"];
+//        NSLog(@"block.array = %@", array);
+//    };
+    [array addObject:@"4"];
+    array = nil;
+    // array工厂模式搞出来的对象，需要等待runloop时候才会被释放哈
+    NSLog(@"block.array = %@, temp = %@", array, temp);
+//    block();
+}
+
+- (void)test {
+    self.params = [NSMutableDictionary dictionary];
+    // 两个nil
+    // -[__NSDictionaryM removeObjectForKey:]: key cannot be nil'
+    // Null passed to a callee that requires a non-null argument
+    // key对应做清空
+//    [self.params setValue:nil forKey:nil];
+//    [self.params setValue:nil forKey:@"name"]; // KVC
+    
+    // 都是nil -[__NSDictionaryM setObject:forKey:]: key cannot be nil'
+    // -[__NSDictionaryM setObject:forKey:]: object cannot be nil (key: name)'
+    [self.params setObject:nil forKey:@"name"];
+    
+    NSNumber *num = [[NSNumber alloc] init];
+    [num copy];
+}
+
+- (void)test2222 {
+    [self globalQueueTest];
+    
+//    WDButton *b = [[WDButton alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+//    [self.view addSubview:b];
+    // 不会crash，但是value or key set nil, will crash
+//    [b setValue:[NSNull null] forKey:@"name"];
+}
+
+- (void)globalQueueTest {
+    //2.创建一个全局队列
+    NSArray *array = @[@"a", @"b", @"c", @"d", @"e", @"f", @"g", @"h", @"i", @"j"];
+    dispatch_queue_t queue =  dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//    dispatch_async([array count], queue, ^(size_t index) {
+//        NSLog(@"%zu: %@", index, [array objectAtIndex:index]);
+//    });
+    dispatch_async(queue, ^{
+        NSLog(@"logCCCC");
+    });
+    NSLog(@"done");
+}
+
+- (void)kuaishouQueue {
+    // 串行队列,并发队列，都是直接死锁，啥也不打印哈（之前我就是这么说的，让面试官吓唬住了）
+    dispatch_queue_t queue = dispatch_queue_create("com.test.gcd.serial", DISPATCH_QUEUE_SERIAL);
+    dispatch_async(queue, ^{
+        NSLog(@"logCCCC");
+        dispatch_sync(queue, ^{
+            NSLog(@"logAAAA");
+        });
+    });
+    
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        NSLog(@"log1111");
+    });
+}
+
+- (void)findAllViews {
+    NSArray<UIView *> *subviews = UIApplication.sharedApplication.keyWindow.subviews;
+    for (UIView *view in subviews) {
+        NSLog(@"mihayou: %@", view);
+    }
+}
+
+- (void)synaInNewQueue {
+    NSLog(@"1");
+    dispatch_queue_t queue = dispatch_queue_create("com.test.gcd.serial", DISPATCH_QUEUE_SERIAL);
+    
+    dispatch_sync(queue, ^{
+        NSLog(@"2-线程:%@", NSThread.currentThread);
+    });
+    
+    NSLog(@"3");
 }
 
 - (void)testConcurrent {
@@ -124,20 +459,20 @@
     }
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    for (int i = 0; i < 10000; i++) {
-        dispatch_async(self.queue, ^{
-            // lg_念念不忘，就在堆区，字符串太复杂了，所以就在堆；
-            // abc很简单，优化后是NSTaggedPointerString类型，是常量区
-            self.name = [NSString stringWithFormat:@"abc"];
-            NSLog(@"name = %@", self.name);
-        });
-    }
-}
+//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+//    for (int i = 0; i < 10000; i++) {
+//        dispatch_async(self.queue, ^{
+//            // lg_念念不忘，就在堆区，字符串太复杂了，所以就在堆；
+//            // abc很简单，优化后是NSTaggedPointerString类型，是常量区
+//            self.name = [NSString stringWithFormat:@"abc"];
+//            NSLog(@"name = %@", self.name);
+//        });
+//    }
+//}
 
 // 测试1：只有touchStart三件套情况，就打印他们
-// 测试2：touch三件套，外加addTarget:action: touch起作用
-// 测试3：touch & button.addTarget:action & b.addTapGeust，结果会打印touch & tap事件
+// 测试2：touch三件套，外加addTarget:action: touch起作用(覆盖addTarget-cancel了)
+// 测试3：touch & button.addTarget:action & b.addTapGeust，结果会打印touch & tap事件(覆盖addTarget-cancel了)
 - (void)addB {
     WDButton *b = [[WDButton alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
 //    [b addTarget:self action:@selector(didB) forControlEvents:UIControlEventTouchUpInside];

@@ -25,7 +25,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-    // [self setupTabbarController]; // 4个tabs demo
+//     [self setupTabbarController]; // 4个tabs demo
     [self setupOriginalController];
     [self.window makeKeyAndVisible];
     return YES;
