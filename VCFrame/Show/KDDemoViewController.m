@@ -41,7 +41,111 @@
     // [self testHunHeSerices];
     
     // 测试出现整个AI打电话效果
-    [self setupButton];
+//    [self setupButton];
+//    [self print0_100];
+    [self getNSThreadFirst];
+
+}
+
+- (void)getNSThreadFirst {
+    // 2024-04-02 14:55:48.363110+0800 VCFrame[4400:181333] a
+    // 2024-04-02 14:55:48.363171+0800 VCFrame[4400:181333] b
+    // 2024-04-02 14:55:48.363217+0800 VCFrame[4400:181333] c
+    // 2024-04-02 14:55:48.363270+0800 VCFrame[4400:181333] d
+    // 2024-04-02 14:55:48.363335+0800 VCFrame[4400:181564] 1
+    NSLog(@"a");
+    NSThread *thread = [[NSThread alloc] initWithTarget:self
+                                               selector:@selector(log5)
+                                                 object:nil];
+    
+    NSLog(@"b");
+    [self performSelector:@selector(test)
+                 onThread:thread
+               withObject:nil
+            waitUntilDone:NO];
+    
+    NSLog(@"c");
+    [thread start];
+    
+    NSLog(@"d");
+}
+
+- (void)log5 {
+    NSLog(@"5");
+}
+
+- (void)testDeadThread {
+    NSThread *thread = [[NSThread alloc] initWithBlock:^{
+                            NSLog(@"1");
+                            [[NSRunLoop currentRunLoop] addPort:[[NSPort alloc] init]
+                                                        forMode:NSDefaultRunLoopMode];
+                            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+                                                     beforeDate:[NSDate distantFuture]];
+                        }];
+    [thread start];
+    
+    [self performSelector:@selector(test)
+                 onThread:thread
+               withObject:nil
+            waitUntilDone:YES];
+}
+
+- (void)test {
+   NSLog(@"2");
+}
+
+- (void)testNSLog {
+    NSLog(@"initWithTarget:test:");
+}
+
+- (void)testsync {
+    dispatch_queue_t queue = dispatch_queue_create("com.test.gcd", DISPATCH_QUEUE_SERIAL);
+    dispatch_sync(queue, ^{
+        NSLog(@"1-线程:%@", NSThread.currentThread);
+    });
+    dispatch_sync(queue, ^{
+        NSLog(@"2-线程:%@", NSThread.currentThread);
+    });
+    dispatch_sync(queue, ^{
+        NSLog(@"3-线程:%@", NSThread.currentThread);
+    });
+}
+
+- (void)testAsync {
+    dispatch_queue_t queue = dispatch_queue_create("com.test.gcd", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_async(queue, ^{
+        NSLog(@"1-线程:%@", NSThread.currentThread);
+    });
+    dispatch_async(queue, ^{
+        NSLog(@"2-线程:%@", NSThread.currentThread);
+    });
+    dispatch_async(queue, ^{
+        NSLog(@"3-线程:%@", NSThread.currentThread);
+    });
+}
+
+- (void)testAutoReleasePool {
+    NSMutableArray *array = [NSMutableArray arrayWithObject:@"1"];
+    NSInteger count = CFGetRetainCount((__bridge CFTypeRef ) array);
+    NSLog(@"array.retainCount = %ld, p = %p", count, array);
+    void(^block)(void) = ^{
+        // retainCount = 2. 强引用，retainCount+1，
+        // 即使array在外界设置为nil，会减一，但是此时还是1, 不会释放
+        // 可以参考self的引用哈
+        [array addObject:@"3"];
+        NSInteger count2 = CFGetRetainCount((__bridge CFTypeRef ) array);
+        NSLog(@"2.array.retainCount = %ld, p = %p", count2, array);
+        NSLog(@"block.array = %@", array);
+    };
+    [array addObject:@"4"];
+    array = nil;
+    NSLog(@"3.array.p = %p", array);
+    // 结果是1\3
+    dispatch_after(2, dispatch_get_main_queue(), ^{
+        block();
+    });
+    
+//    block();
 }
 
 - (void)setupButton {
@@ -152,6 +256,128 @@
     }
 }
 
+- (void)print0_100 {
+    __block int i = 0;
+    dispatch_queue_t q0 = dispatch_queue_create("q1", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_queue_t q1 = dispatch_queue_create("q2", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_queue_t q2 = dispatch_queue_create("q3", DISPATCH_QUEUE_CONCURRENT);
+    NSCondition *condition = [[NSCondition alloc] init];
+    dispatch_async(q0, ^{
+        while(1) {
+            [condition lock];
+            while (i % 3 != 0) {
+                [condition wait];
+            }
+            if (i > 100) {
+                [condition unlock];
+                return;
+            }
+            NSLog(@"q0 - i = %d", i);
+            i++;
+            [condition broadcast];
+            [condition unlock];
+        }
+    });
+
+    dispatch_async(q1, ^{
+        while(1) {
+            [condition lock];
+            while (i % 3 != 1) {
+                [condition wait];
+            }
+            if (i > 100) {
+                [condition unlock];
+                return;
+            }
+            NSLog(@"q1 - i = %d", i);
+            i++;
+            [condition broadcast];
+            [condition unlock];
+        }
+    });
+
+    dispatch_async(q2, ^{
+        while(1) {
+            [condition lock];
+            while (i % 3 != 2) {
+                [condition wait];
+            }
+            if (i > 100) {
+                [condition unlock];
+                return;
+            }
+            NSLog(@"q2 - i = %d", i);
+            i++;
+            [condition broadcast];
+            [condition unlock];
+        }
+    });
+
+    NSLog(@"[print0_100]end");
+}
+
+//- (void)print0_100 {
+//    __block int i = 0;
+//    dispatch_queue_t queueA = dispatch_queue_create("queue a", DISPATCH_QUEUE_CONCURRENT);
+//    dispatch_queue_t queueB = dispatch_queue_create("queue b", DISPATCH_QUEUE_CONCURRENT);
+//    dispatch_queue_t queueC = dispatch_queue_create("queue c", DISPATCH_QUEUE_CONCURRENT);
+//    NSCondition *condition = [[NSCondition alloc] init];
+//    NSLog(@"[print0_100]begin");
+//    dispatch_async(queueA, ^{
+//        while (1) {
+//            [condition lock];
+//            // 这里是while
+//            while (i%3 != 0) {
+//                [condition wait];
+//            }
+//            if (i > 100) {
+//                [condition unlock];
+//                return;
+//            }
+//            NSLog(@"[print0_100]A ==== i = %d",i);
+//            i++;
+//            [condition broadcast];
+//            [condition unlock];
+//        }
+//    });
+//
+//    dispatch_async(queueB, ^{
+//        while (1) {
+//            [condition lock];
+//            // 这里是while
+//            while (i%3 != 1) {
+//                [condition wait];
+//            }
+//            if (i > 100) {
+//                [condition unlock];
+//                return;
+//            }
+//            NSLog(@"[print0_100]B ==== i = %d",i);
+//            i++;
+//            [condition broadcast];
+//            [condition unlock];
+//        }
+//    });
+//    dispatch_async(queueC, ^{
+//        while (1) {
+//            [condition lock];
+//            // 这里是while
+//            while (i%3 != 2) {
+//                [condition wait];
+//            }
+//            if (i > 100) {
+//                [condition unlock];
+//                return;
+//            }
+//            NSLog(@"[print0_100]C ==== i = %d",i);
+//            i++;
+//            [condition broadcast];
+//            [condition unlock];
+//        }
+//    });
+//    NSLog(@"[print0_100]end");
+//}
+
 // 给定一个window对象，找到这个window上所有class类型为TargetView的 view实例
 - (NSArray *)findAllTargetViewClass:(UIView *)view {
     if (!view) {
@@ -189,13 +415,13 @@
 // 测试3：touch & button.addTarget:action & b.addTapGeust，结果会打印touch & tap事件
 - (void)addB {
     WDButton *b = [[WDButton alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
-//    [b addTarget:self action:@selector(didB) forControlEvents:UIControlEventTouchUpInside];
+    [b addTarget:self action:@selector(didB) forControlEvents:UIControlEventTouchUpInside];
     b.backgroundColor = UIColor.yellowColor;
     [self.view addSubview:b];
     
-//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
-//    [tap addTarget:self action:@selector(clickTapEvent)];
-//    [b addGestureRecognizer:tap];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
+    [tap addTarget:self action:@selector(clickTapEvent)];
+    [b addGestureRecognizer:tap];
 }
 
 - (void)clickTapEvent {
