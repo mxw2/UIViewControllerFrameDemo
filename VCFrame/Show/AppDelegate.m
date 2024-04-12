@@ -29,12 +29,30 @@
 //     [self setupTabbarController]; // 4个tabs demo
     [self setupOriginalController];
     [self.window makeKeyAndVisible];
+    CFRunLoopRef mainRunloop = [[NSRunLoop mainRunLoop] getCFRunLoop];
+    CFRunLoopPerformBlock(mainRunloop,NSDefaultRunLoopMode,^(){
+        NSTimeInterval stamp = [[NSDate date] timeIntervalSince1970];
+        NSLog(@"runloop block launch end:%f",stamp);
+    });
+    //注册kCFRunLoopBeforeTimers回调
+//    CFRunLoopRef mainRunloop = [[NSRunLoop mainRunLoop] getCFRunLoop];
+    CFRunLoopActivity activities = kCFRunLoopAllActivities;
+    CFRunLoopObserverRef observer = CFRunLoopObserverCreateWithHandler(kCFAllocatorDefault,
+                                                                       activities,
+                                                                       YES,
+                                                                       0, ^(CFRunLoopObserverRef observer, CFRunLoopActivity activity) {
+        if (activity == kCFRunLoopBeforeTimers) {
+            NSTimeInterval stamp = [[NSDate date] timeIntervalSince1970];
+            NSLog(@"runloop beforetimers launch end:%f",stamp);
+            CFRunLoopRemoveObserver(mainRunloop, observer, kCFRunLoopCommonModes);
+        }
+    });
+    CFRunLoopAddObserver(mainRunloop, observer, kCFRunLoopCommonModes);
     return YES;
 }
 
 - (void)setupOriginalController {
     KDDemoViewController *controller = [[KDDemoViewController alloc] init];
-    controller.title = @"有导航栏";
     KDNavigationController *navigationController = [[KDNavigationController alloc] initWithRootViewController:controller];
     self.window.rootViewController = navigationController;
 }

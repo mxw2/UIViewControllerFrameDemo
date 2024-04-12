@@ -14,6 +14,7 @@
 #import "KDThreeViewController.h"
 #import "KDNavigationController.h"
 #import "UIWindow+BBACurrentVC.h"
+#import "LGAsyncLabel.h"
 // KDNoNavigationBarViewController
 
 @interface KDDemoViewController ()
@@ -43,8 +44,13 @@
     // 测试出现整个AI打电话效果
 //    [self setupButton];
 //    [self print0_100];
-    [self getNSThreadFirst];
-
+    self.title = @"有导航栏-KDDemoViewController";
+//    [self getNSThreadFirst];
+    LGAsyncLabel *label = [[LGAsyncLabel alloc] init];
+    label.frame = CGRectMake(100, 100, 200, 200);
+    label.backgroundColor = UIColor.redColor;
+    [self.view addSubview:label];
+    [label.layer setNeedsDisplay];
 }
 
 - (void)getNSThreadFirst {

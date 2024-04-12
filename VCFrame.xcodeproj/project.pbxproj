@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0311E1D22A979F39006FC867 /* WDButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0311E1D12A979F39006FC867 /* WDButton.m */; };
+		0321D6532BC97265008F8D20 /* LGAsyncLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0321D6522BC97265008F8D20 /* LGAsyncLabel.m */; };
 		033F62D12AE281A000F99E31 /* WXCusterBlockObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 033F62D02AE281A000F99E31 /* WXCusterBlockObject.m */; };
 		03474BBD2A924B6F006588DD /* MyPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 03474BBC2A924B6F006588DD /* MyPoint.m */; };
 		03EA15082AD585B300914D92 /* WXPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 03EA15072AD585B300914D92 /* WXPerson.m */; };
@@ -74,6 +75,8 @@
 /* Begin PBXFileReference section */
 		0311E1D02A979F39006FC867 /* WDButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WDButton.h; sourceTree = "<group>"; };
 		0311E1D12A979F39006FC867 /* WDButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WDButton.m; sourceTree = "<group>"; };
+		0321D6512BC97265008F8D20 /* LGAsyncLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGAsyncLabel.h; sourceTree = "<group>"; };
+		0321D6522BC97265008F8D20 /* LGAsyncLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGAsyncLabel.m; sourceTree = "<group>"; };
 		033F62CF2AE281A000F99E31 /* WXCusterBlockObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXCusterBlockObject.h; sourceTree = "<group>"; };
 		033F62D02AE281A000F99E31 /* WXCusterBlockObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXCusterBlockObject.m; sourceTree = "<group>"; };
 		03474BBB2A924B6F006588DD /* MyPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyPoint.h; sourceTree = "<group>"; };
@@ -202,6 +205,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0321D6502BC97252008F8D20 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0321D6512BC97265008F8D20 /* LGAsyncLabel.h */,
+				0321D6522BC97265008F8D20 /* LGAsyncLabel.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		03474BBA2A924B5E006588DD /* JSDemo */ = {
 			isa = PBXGroup;
 			children = (
@@ -283,6 +295,7 @@
 		6A43938F283D2F13005519FB /* Show */ = {
 			isa = PBXGroup;
 			children = (
+				0321D6502BC97252008F8D20 /* Views */,
 				A381EBFE2B6A302A0062DCE0 /* UIViewController+BBACurrentVC.h */,
 				A381EBFF2B6A302A0062DCE0 /* UIViewController+BBACurrentVC.m */,
 				A381EBFB2B6A300D0062DCE0 /* UIWindow+BBACurrentVC.h */,
@@ -386,13 +399,13 @@
 		6AE1AA8E283DAE3900CED6CE /* OPOrder */ = {
 			isa = PBXGroup;
 			children = (
-				6AE1AA8F283DAE3900CED6CE /* SecondChangeableProtocol.h */,
 				6AE1AA90283DAE3900CED6CE /* OPChangeableBaseProtocol.h */,
-				6AE1AA91283DAE3900CED6CE /* OPOrderBase.h */,
-				6AE1AA92283DAE3900CED6CE /* OPOrderChangeableBase.m */,
 				6AE1AA93283DAE3900CED6CE /* FirstChangeableProtocol.h */,
+				6AE1AA8F283DAE3900CED6CE /* SecondChangeableProtocol.h */,
+				6AE1AA91283DAE3900CED6CE /* OPOrderBase.h */,
 				6AE1AA94283DAE3900CED6CE /* OPOrderBase.m */,
 				6AE1AA95283DAE3900CED6CE /* OPOrderChangeableBase.h */,
+				6AE1AA92283DAE3900CED6CE /* OPOrderChangeableBase.m */,
 			);
 			path = OPOrder;
 			sourceTree = "<group>";
@@ -550,6 +563,7 @@
 				6ACA7BBB26F1C664000F2ABE /* AppDelegate.m in Sources */,
 				6AE1AAA1283DAEBB00CED6CE /* SIPerson.m in Sources */,
 				03EA150E2AD5860900914D92 /* WXGirl.m in Sources */,
+				0321D6532BC97265008F8D20 /* LGAsyncLabel.m in Sources */,
 				6A09F2D32A865A510067EB30 /* KDDemoViewController.m in Sources */,
 				6AE1AA9B283DAE3900CED6CE /* OPOrderBase.m in Sources */,
 				6A1AA1F42A87B88C003D73A6 /* KDCustomURLSchemeHandler.m in Sources */,
